@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartList Lite</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 { color: #fff; margin-top: 40px; font-size: 2rem; }
+    p.subtitle { color: #e8f4ff; font-size: 0.9rem; margin-bottom: 20px; }
+
+    .container {
+      background-color: #fff;
+      width: 90%;
+      max-width: 450px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    label { font-weight: bold; display: block; margin-bottom: 5px; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background-color: #0056b3; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th, td { padding: 8px; border-bottom: 1px solid #ddd; }
+    th { color: #007bff; }
+
+    .actions button {
+      width: auto;
+      padding: 5px 10px;
+      margin: 2px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .done { background-color: #28a745; color: white; }
+    .undo { background-color: #ffc107; color: white; }
+    .delete { background-color: #dc3545; color: white; }
+
+    footer { color: white; font-size: 0.8rem; margin-top: auto; padding: 10px; }
+
+    /* LOGIN STYLES */
+    #loginBox {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 320px;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #loginBox h2 { margin-bottom: 20px; color: #007bff; }
+    #loginBox input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    #loginBox button {
+      width: 95%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #loginBox button:hover { background-color: #0056b3; }
+
+    /* NAV BAR */
+    nav {
+      width: 100%;
+      background: #007bff;
+      text-align: center;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="help.html">Help</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- LOGIN SECTION -->
+  <div id="loginBox">
+    <h2>SmartList Lite Login</h2>
+    <input type="email" id="email" placeholder="Enter Email" required>
+    <input type="password" id="password" placeholder="Enter Password" required>
+    <button onclick="login()">Login</button>
+    <p>© Team Innovate</p>
+  </div>
+
+  <!-- MAIN SYSTEM -->
+  <div id="mainSystem" style="display:none;">
+    <h1>SmartList Lite</h1>
+    <p class="subtitle">Lighter, faster, and easy to use Task Management</p>
+
+    <div class="container">
+      <button onclick="logout()" style="background-color:#dc3545;margin-bottom:10px;">Logout</button>
+      <h3>Add New Task</h3>
+      <label>Activity Name</label>
+      <input type="text" id="taskName" placeholder="Activity Name">
+
+      <label>Category</label>
+      <select id="category">
+        <option value="Others">Others</option>
+        <option value="Project">Project</option>
+        <option value="Assignment">Assignment</option>
+        <option value="Exam">Exam</option>
+      </select>
+
+      <label>Subject Name</label>
+      <select id="subject">
+        <option value="" disabled selected>Choose a Subject</option>
+        <option value="EAPP">EAPP</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="UCSP">UCSP</option>
+        <option value="Practical Research">Practical Research</option>
+        <option value="Filipino">Filipino</option>
+        <option value="ICT">ICT</option>
+        <option value="HOPE">HOPE</option>
+        <option value="Others">Others</option>
+      </select>
+
+      <label>Deadline</label>
+      <input type="date" id="deadline">
+
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <div class="container">
+      <table id="taskTable">
+        <tr>
+          <th>No.</th>
+          <th>Task</th>
+          <th>Subject</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </table>
+    </div>
+
+    <footer>© Team Innovate, All rights reserved</footer>
+  </div>
+
+  <script>
+    // LOGIN FUNCTION (with email validation)
+    function login() {
+      const email = document.getElementById("email").value.trim();
+      const pass = document.getElementById("password").value.trim();
+
+      // EMAIL VALIDATION
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (email === "" || pass === "") {
+        alert("Please enter your email and password.");
+        return;
+      }
+
+      if (!emailPattern.test(email)) {
+        alert("Invalid email address. Please enter a valid email (e.g. name@example.com).");
+        return;
+      }
+
+      alert("Welcome, " + email + "!");
+      localStorage.setItem("loggedInUser", email);
+
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("mainSystem").style.display = "block";
+    }
+
+    function logout() {
+      if (confirm("Are you sure you want to log out?")) {    
+        localStorage.removeItem("loggedInUser");
+        document.getElementById("mainSystem").style.display = "none";
+        document.getElementById("loginBox").style.display = "block";
+      }                
+    }
+
+    // Check if already logged in
+    window.onload = function() {
+      const user = localStorage.getItem("loggedInUser");
+      if (user) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("mainSystem").style.display = "block";
+      }
+      displayTasks();
+    }
+
+    // TASK FUNCTIONS
+    let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+    let counter = taskList.length;
+
+    function addTask() {
+      let taskName = document.getElementById("taskName").value.trim();
+      let subject = document.getElementById("subject").value;
+      let category = document.getElementById("category").value;
+      let deadline = document.getElementById("deadline").value;
+
+      if (taskName === "" || subject === "" || deadline === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      counter++;
+      let task = {
+        id: counter,
+        task: taskName + " (" + category + ")",
+        subject: subject,
+        deadline: deadline,
+        status: "Ongoing"
+      };
+
+      taskList.push(task);
+      saveTasks();
+      displayTasks();
+
+      document.getElementById("taskName").value = "";
+      document.getElementById("subject").selectedIndex = 0;
+      document.getElementById("deadline").value = "";
+      document.getElementById("category").value = "Others";
+    }
+
+    function displayTasks() {
+      let table = document.getElementById("taskTable");
+      table.innerHTML = `
+        <tr>
+          <th>No.</th>
+          <th>Task</th>
+          <th>Subject</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      `;
+
+      taskList.forEach((t, index) => {
+        let row = table.insertRow();
+        row.insertCell(0).innerHTML = index + 1;
+        row.insertCell(1).innerHTML = t.task;
+        row.insertCell(2).innerHTML = t.subject;
+        row.insertCell(3).innerHTML = t.deadline;
+        row.insertCell(4).innerHTML = t.status;
+        row.insertCell(5).innerHTML = `
+          <div class="actions">
+            <button class="done" onclick="markDone(${index})">Done</button>
+            <button class="undo" onclick="markUndo(${index})">Undo</button>
+            <button class="delete" onclick="deleteTask(${index})">Delete</button>
+          </div>
+        `;
+      });
+    }
+
+    function markDone(index) {
+      taskList[index].status = "Done";
+      saveTasks();
+      displayTasks();
+    }
+
+    function markUndo(index) {
+      taskList[index].status = "Ongoing";
+      saveTasks();
+      displayTasks();
+    }
+
+    function deleteTask(index) {
+      if (confirm("Are you sure you want to delete this task?")) {    
+        taskList.splice(index, 1);
+        saveTasks();
+        displayTasks();
+      }        
+    }
+
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(taskList));
+    }
+  </script>
+</body>
+</html>

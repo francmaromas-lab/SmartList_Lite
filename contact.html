@@ -1,0 +1,140 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Contact Us - SmartList Lite</title>  
+    <style>  
+        body {  
+            font-family: 'Poppins', sans-serif;  
+            background-color: #f6f8fa;  
+            color: #333;  
+            padding: 20px;  
+        }  
+
+        .container {  
+            max-width: 600px;  
+            margin: auto;  
+            background: #fff;  
+            padding: 25px;  
+            border-radius: 15px;  
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);  
+        }  
+
+        h1 {  
+            text-align: center;  
+            color: #3b82f6;  
+            margin-bottom: 20px;  
+        }  
+
+        form {  
+            display: flex;  
+            flex-direction: column;  
+            gap: 15px;  
+        }  
+
+        label {  
+            font-weight: 500;  
+            color: #333;  
+        }  
+
+        input, textarea {  
+            width: 100%;  
+            padding: 10px;  
+            border: 1px solid #ccc;  
+            border-radius: 8px;  
+            font-size: 1rem;  
+            font-family: 'Poppins', sans-serif;  
+        }  
+
+        textarea {  
+            resize: none;  
+            height: 120px;  
+        }  
+
+        .submit-btn {  
+            background-color: #3b82f6;  
+            color: white;  
+            border: none;  
+            padding: 10px;  
+            border-radius: 8px;  
+            font-size: 1rem;  
+            cursor: pointer;  
+            transition: background 0.3s ease;  
+        }  
+
+        .submit-btn:hover {  
+            background-color: #2563eb;  
+        }  
+
+        .info {  
+            margin-top: 20px;  
+            text-align: center;  
+            font-size: 0.95rem;  
+            color: #555;  
+        }  
+
+        .back-btn {  
+            display: inline-block;  
+            margin-top: 20px;  
+            padding: 10px 20px;  
+            background-color: #3b82f6;  
+            color: white;  
+            border: none;  
+            border-radius: 8px;  
+            cursor: pointer;  
+            transition: background 0.3s ease;  
+        }  
+
+        .back-btn:hover {  
+            background-color: #2563eb;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="container">  
+        <h1>Contact Us</h1>  
+        <form id="contactForm">  
+            <label for="name">Full Name:</label>  
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>  
+
+            <label for="email">Email Address:</label>  
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>  
+
+            <label for="message">Your Message:</label>  
+            <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>  
+
+            <button type="submit" class="submit-btn">Send Message</button>  
+        </form>  
+
+        <div class="info">  
+            <p><b>Email:</b> smartlistlite@gmail.com</p>  
+            <p><b>Phone:</b> +63 961 439 9224</p>  
+            <p><b>Address:</b> Isabel, Leyte, Philippines</p>  
+        </div>  
+
+        <div style="text-align:center;">  
+            <button class="back-btn" onclick="window.location.href='index.html'">Back to Home Page</button>  
+        </div>  
+    </div>  
+
+    <script>  
+        // When form is submitted, show success message  
+        document.getElementById("contactForm").addEventListener("submit", function(event) {  
+            event.preventDefault(); // prevent actual form submit (no backend needed)  
+            
+            // simple validation check  
+            const name = document.getElementById("name").value.trim();  
+            const email = document.getElementById("email").value.trim();  
+            const message = document.getElementById("message").value.trim();  
+
+            if (name && email && message) {  
+                alert("Your message has been sent successfully! Thank you for reaching out");  
+                document.getElementById("contactForm").reset(); // clear form after sending  
+            } else {  
+                alert("Please fill out all fields before sending your message.");  
+            }  
+        });  
+    </script>  
+</body>  
+</html>

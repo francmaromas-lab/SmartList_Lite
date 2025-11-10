@@ -1,0 +1,162 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>About SmartList Lite</title>  
+    <style>  
+        body {  
+            font-family: 'Poppins', sans-serif;  
+            background-color: #f6f8fa;  
+            color: #333;  
+            padding: 20px;  
+            line-height: 1.6;  
+        }  
+
+        .container {  
+            max-width: 700px;  
+            margin: auto;  
+            background: #fff;  
+            padding: 25px;  
+            border-radius: 15px;  
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);  
+        }  
+
+        h1, h2 {  
+            text-align: center;  
+            color: #3b82f6;  
+        }  
+
+        p {  
+            text-align: justify;  
+        }  
+
+        .footer {  
+            text-align: center;  
+            margin-top: 30px;  
+            font-size: 14px;  
+            color: #777;  
+        }  
+
+        /* TEAM SECTION */  
+        .team {  
+            text-align: center;  
+            margin-top: 40px;  
+            padding: 20px;  
+            background: #f8fafc;  
+            border-radius: 15px;  
+        }  
+
+        .team h2 {  
+            color: #007bff;  
+            margin-bottom: 20px;  
+            font-size: 1.8rem;  
+        }  
+
+        .team-container {  
+            display: flex;  
+            flex-wrap: wrap;  
+            justify-content: center;  
+            gap: 20px;  
+        }  
+
+        .member {  
+            background: white;  
+            border-radius: 10px;  
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);  
+            width: 200px;  
+            padding: 15px;  
+            transition: transform 0.3s ease, box-shadow 0.3s ease;  
+        }  
+
+        .member:hover {  
+            transform: translateY(-5px);  
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);  
+        }  
+
+        .member img {  
+            width: 100%;  
+            height: 180px;  
+            border-radius: 10px;  
+            object-fit: cover;  
+        }  
+
+        .member h3 {  
+            margin: 10px 0 5px 0;  
+            color: #333;  
+        }  
+
+        .member p {  
+            color: #007bff;  
+            font-weight: 500;  
+            font-size: 0.9rem;  
+        }  
+
+        /* BACK BUTTON */  
+        .back-btn {  
+            display: inline-block;  
+            margin-top: 20px;  
+            padding: 10px 20px;  
+            background-color: #3b82f6;  
+            color: white;  
+            border: none;  
+            border-radius: 8px;  
+            cursor: pointer;  
+            transition: background 0.3s ease;  
+        }  
+
+        .back-btn:hover {  
+            background-color: #2563eb;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="container">  
+        <h1>About SmartList Lite</h1>  
+        <p>  
+            <b>SmartList Lite</b> is a simple and user-friendly digital planner designed   
+            to help students and professionals organize their daily tasks, schedule deadlines,   
+            and boost productivity.   
+        </p>  
+        <p>  
+            This app works even when offline, making it convenient for users who want   
+            to manage their activities anytime, anywhere. SmartList Lite helps you stay   
+            on top of your goals with ease and efficiency.  
+        </p>  
+
+        <!-- TEAM SECTION -->  
+        <section class="team">  
+            <h2>Meet Our Team</h2>  
+            <div class="team-container">  
+                <div class="member">  
+                    <img src="11.jpg" alt="Jolia Mae Rojas">  
+                    <h3>Jolia Mae Rojas</h3>  
+                    <p>Developer / Designer</p>  
+                </div>  
+                <div class="member">  
+                    <img src="22.jpg" alt="Metra">  
+                    <h3>Jane Erica Metra</h3>  
+                    <p>Editor</p>  
+                </div>  
+                <div class="member">  
+                    <img src="33.jpg" alt="Noya">  
+                    <h3>Ivy Noya</h3>  
+                    <p>Researcher</p>  
+                </div>  
+                <div class="member">  
+                    <img src="44.jpg" alt="Dumagsa">  
+                    <h3>Justin Jay Dumagsa</h3>  
+                    <p>Presenter</p>  
+                </div>  
+            </div>  
+        </section>  
+
+        <div class="footer">  
+            <p>Developed by <b>Jolia Mae Rojas</b> | © 2025 SmartList Lite</p>  
+            <button class="back-btn" onclick="window.location.href='index.html'">  
+                Back to Home Page  
+            </button>  
+        </div>  
+    </div>  
+</body>  
+</html>
